@@ -6,7 +6,7 @@ import { Context } from '@micro-frontend-react/core/lib/Context';
 import { Home } from './Home';
 
 const userProvider = {
-  getUserName: () => 'Sample User',
+  getUserName: () => 'Freist Li 123',
 };
 
 export function App(): React.ReactElement {
@@ -24,9 +24,11 @@ export function App(): React.ReactElement {
             data={{
               customData: 'custom data',
             }}
-          />
+          />         
+          
         )}
       />
+       
     </BrowserRouter>
   );
 }

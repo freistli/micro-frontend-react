@@ -1,6 +1,6 @@
 const generateBuildConfig = require('@micro-frontend-react/core/lib/WebpackConfigs');
 
-const devServerPort = 9000;
+const devServerPort = 9900;
 const useHttps = false;
 const openBrowser = true;
 
