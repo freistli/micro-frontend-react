@@ -3,6 +3,7 @@ import { Context, withContext } from '@micro-frontend-react/core/lib/Context';
 import * as AdaptiveCards from 'adaptivecards';
 import { AdaptiveCard } from "adaptivecards-react";
 import * as ACFluentUI from "adaptivecards-fluentui";
+import card01 from "./cards/card01.json"
 
 function MyCard(): React.ReactElement{
   const { userProvider, customData } = React.useContext(
@@ -19,114 +20,7 @@ function MyCard(): React.ReactElement{
     setUserName(userName);
   }, [userProvider]);
 
-  var card = {
-    "type": "AdaptiveCard",
-    "body": [
-        {
-            "type": "TextBlock",
-            "size": "Medium",
-            "weight": "Bolder",
-            "text": "Publish Adaptive Card Schema"
-        },
-        {
-            "type": "ColumnSet",
-            "columns": [
-                {
-                    "type": "Column",
-                    "items": [
-                        {
-                            "type": "Image",
-                            "style": "Person",
-                            "url": "https://pbs.twimg.com/profile_images/3647943215/d7f12830b3c17a5a9e4afcc370e3a37e_400x400.jpeg",
-                            "size": "Small"
-                        }
-                    ],
-                    "width": "auto"
-                },
-                {
-                    "type": "Column",
-                    "items": [
-                        {
-                            "type": "TextBlock",
-                            "weight": "Bolder",
-                            "text": "Matt Hidinger",
-                            "wrap": true
-                        },
-                        {
-                            "type": "TextBlock",
-                            "spacing": "None",
-                            "text": "Created {{DATE(2017-02-14T06:08:39Z,SHORT)}}",
-                            "isSubtle": true,
-                            "wrap": true
-                        }
-                    ],
-                    "width": "stretch"
-                }
-            ]
-        },
-        {
-            "type": "TextBlock",
-            "text": "Now that we have defined the main rules and features of the format, we need to produce a schema and publish it to GitHub. The schema will be the starting point of our reference documentation.",
-            "wrap": true
-        },
-        {
-            "type": "FactSet",
-            "facts": [
-                {
-                    "title": "Board:",
-                    "value": "Adaptive Cards"
-                },
-                {
-                    "title": "List:",
-                    "value": "Backlog"
-                },
-                {
-                    "title": "Assigned to:",
-                    "value": "Matt Hidinger"
-                },
-                {
-                    "title": "Due date:",
-                    "value": "Not set"
-                }
-            ]
-        }
-    ],
-    "actions": [
-        {
-            "type": "Action.ShowCard",
-            "title": "Set due date",
-            "card": {
-                "type": "AdaptiveCard",
-                "body": [
-                    {
-                        "type": "Input.Date",
-                        "id": "dueDate"
-                    },
-                    {
-                        "type": "Input.Text",
-                        "id": "comment",
-                        "placeholder": "Add a comment",
-                        "isMultiline": true
-                    }
-                ],
-                "actions": [
-                    {
-                        "type": "Action.Submit",
-                        "title": "OK"
-                    }
-                ],
-                "$schema": "http://adaptivecards.io/schemas/adaptive-card.json"
-            }
-        },
-        {
-            "type": "Action.OpenUrl",
-            "title": "View",
-            "url": "https://adaptivecards.io"
-        }
-    ],
-    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-    "version": "1.5"
-};
+   
 
 // Create an AdaptiveCard instance
 
@@ -176,7 +70,7 @@ var cardAction = function (action:any) {
 //     };
 
 // Parse the card payload
-adaptiveCard.parse(card);
+adaptiveCard.parse(card01);
 
 // Render the card to an HTML element:
 //var renderedCard = adaptiveCard.render();
@@ -187,7 +81,7 @@ adaptiveCard.parse(card);
     <div>
       <h1>My Card</h1>
       { userProvider.InitVisibility ? <AdaptiveCard
-          payload={card}
+          payload={card01}
           style={{ width: '300px' }}
           onExecuteAction={cardAction}        
        /> : <h2>Hidden</h2> }
@@ -223,4 +117,7 @@ function MicroFrontendApp(): React.ReactElement {
 }
 
 const connected = withContext(MyCard);
-export { connected as MicroFrontendApp };
+export { connected as MyCard };
+
+const connected01 = withContext(MicroFrontendApp);
+export { connected01 as MicroFrontendApp };

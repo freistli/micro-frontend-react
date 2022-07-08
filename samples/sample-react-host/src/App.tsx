@@ -31,6 +31,21 @@ export function App(): React.ReactElement {
           
         )}
       />       
+      <Route
+        path="/card"
+        render={() => (
+          <ComponentProvider
+            config={{
+              script: 'http://localhost:8000/bundles/micro-frontend-app.js',
+              name: 'card',
+            }}
+            data={{
+              customData: 'Display',
+            }}
+          />         
+          
+        )}
+      />   
     </BrowserRouter> 
     </div>
     

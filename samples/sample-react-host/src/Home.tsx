@@ -34,9 +34,9 @@ export function Home(): React.ReactElement {
       <ComponentProvider
         config={{
           script: 'http://localhost:8000/bundles/micro-frontend-app.js',
-          name: 'MicroFrontendApp',
+          name: 'MyCard',
         }}
-      />:<h2>Card Placeholder</h2>
+      />:<h2><a href='/card'>Click to see card</a></h2>
     }
     <ComponentProvider
         config={{
