@@ -7,10 +7,13 @@ import { Home } from './Home';
 
 const userProvider = {
   getUserName: () => 'Freist Li 123',
+  InitVisibility: true,
 };
 
 export function App(): React.ReactElement {
+  
   return (
+    <div>
     <BrowserRouter>
       <Route path="/" exact component={Home} />
       <Route
@@ -22,16 +25,17 @@ export function App(): React.ReactElement {
               name: 'MicroFrontendApp',
             }}
             data={{
-              customData: 'custom data',
+              customData: 'Display',
             }}
           />         
           
         )}
-      />
-       
-    </BrowserRouter>
+      />       
+    </BrowserRouter> 
+    </div>
+    
   );
-}
+} 
 
 render(
   <Context.Provider
@@ -39,7 +43,7 @@ render(
       userProvider,
     }}
   >
-    <App />
+    <App/>
   </Context.Provider>,
   document.getElementById('app')
 );

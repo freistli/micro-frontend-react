@@ -7,7 +7,8 @@ import * as ACFluentUI from "adaptivecards-fluentui";
 function MyCard(): React.ReactElement{
   const { userProvider, customData } = React.useContext(
     Context as React.Context<{
-      userProvider: { getUserName(): string };
+      userProvider: { getUserName(): string,
+        InitVisibility: boolean } ;
       customData?: string;
     }>
   );
@@ -185,16 +186,12 @@ adaptiveCard.parse(card);
   return (
     <div>
       <h1>My Card</h1>
-      <AdaptiveCard
+      { userProvider.InitVisibility ? <AdaptiveCard
           payload={card}
           style={{ width: '300px' }}
           onExecuteAction={cardAction}        
-       />
-       <AdaptiveCard
-          payload={card}
-          style={{ width: '300px' }}
-          onExecuteAction={cardAction}        
-       />
+       /> : <h2>Hidden</h2> }
+      
     </div>
   );
 }
@@ -212,9 +209,7 @@ function MicroFrontendApp(): React.ReactElement {
     const userName = userProvider.getUserName();
     setUserName(userName);
   }, [userProvider]);
-
  
-
   return (
     <div 
       style={{
@@ -222,8 +217,7 @@ function MicroFrontendApp(): React.ReactElement {
       }}
     >
       Hello, {userName} from {__APP_NAME__}
-      {customData ? ` with ${customData}` : ''}!
-      
+      {customData ? ` with ${customData}` : ''}!      
     </div>
   );
 }

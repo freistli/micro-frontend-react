@@ -14,7 +14,7 @@ export function Home(): React.ReactElement {
     const userName = userProvider.getUserName();
     setUserName(userName);
   }, [userProvider]);
-
+  const [CardVisibility,SetCardVisibility] = React.useState<boolean>(true);
   return (
     <>
       <div
@@ -24,8 +24,21 @@ export function Home(): React.ReactElement {
       >
         Hello, {userName} from {__APP_NAME__}
       </div>
+    <input type="checkbox" checked={CardVisibility} onChange={()=>
+    { 
+      SetCardVisibility(!CardVisibility)
+    }}/>
+    <label> Card visibility</label>
 
+    { CardVisibility ? 
       <ComponentProvider
+        config={{
+          script: 'http://localhost:8000/bundles/micro-frontend-app.js',
+          name: 'MicroFrontendApp',
+        }}
+      />:<h2>Card Placeholder</h2>
+    }
+    <ComponentProvider
         config={{
           script: 'http://localhost:8000/bundles/micro-frontend-app.js',
           name: 'MicroFrontendApp',
